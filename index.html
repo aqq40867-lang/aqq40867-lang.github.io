@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Yan Wei · Software Engineer · AI agents, RAG, backend and full-stack development.">
+<title>Yan Wei Engineer OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,700;1,800;1,900&family=JetBrains+Mono:wght@400;500;700&family=Barlow:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= Fixed shell ================= -->
+<div class="fx" aria-hidden="true"><div class="fx__grain"></div></div>
+
+<header class="nav">
+  <a class="brand" href="#home" data-go="home">
+    <span class="brand__logo">YW</span>
+    <span class="brand__name">Yan Wei</span>
+    <span class="brand__ver">v2026</span>
+  </a>
+  <nav class="tabs" aria-label="Sections">
+    <a class="tab is-active" href="#home" data-go="home">HOME</a>
+    <a class="tab" href="#index" data-go="index">INDEX</a>
+    <a class="tab" href="#profile" data-go="profile">PROFILE</a>
+    <a class="tab" href="#timeline" data-go="timeline">TIMELINE</a>
+    <a class="tab" href="#skills" data-go="skills">STACK</a>
+    <a class="tab" href="#projects" data-go="projects">PROJECTS</a>
+    <a class="tab" href="#contact" data-go="contact">CONTACT</a>
+    <button class="tab tab--action" type="button" id="replaceBtn" aria-controls="drawer">⇄ REPLACE</button>
+  </nav>
+  <div class="nav__right">
+    <button class="sound mono" id="soundBtn" type="button" aria-pressed="false"><i class="sound__dot"></i><span>Sound off</span></button>
+    <button class="btn-line" type="button" data-open-ai><i></i>Talk to Yan</button>
+  </div>
+</header>
+
+<div class="side mono" aria-hidden="true">Building with AI · Shipping with code</div>
+<div class="progress" aria-hidden="true"><div class="progress__fill" id="progFill"></div></div>
+
+<footer class="status">
+  <span class="pill" style="--c:var(--accent)"><i></i>SYSTEM ONLINE</span>
+  <span class="pill" style="--c:var(--ok)"><i></i>OPEN TO WORK</span>
+  <span class="pill" style="--c:var(--accent-2)"><i></i>AI AGENT ACTIVE</span>
+  <span class="pill" style="--c:var(--hot)"><i></i>UPDATED 2026</span>
+  <button class="pill pill--btn" type="button" id="assetsBtn" style="--c:var(--warn)"><i></i>REPLACE <span id="assetCount">0/0</span></button>
+  <div class="status__meta"><span>SEC <b id="secNo">00</b> / 06 · <b id="secName">HOME</b></span><span>LOCAL <b id="clock">--:--:--</b></span></div>
+</footer>
+
+<button class="orb" type="button" data-open-ai aria-label="Open the AI assistant">
+  <span class="orb__tag">● TAP TO TALK</span>
+  <span class="orb__ball"><span class="orb__ring"></span><span class="orb__ring"></span><span class="orb__core">AI</span></span>
+  <span class="orb__tag">YAN AI · ONLINE</span>
+</button>
+
+<section class="ai" id="aiPanel" hidden aria-label="AI assistant">
+  <div class="ai__head">
+    <span class="ai__chip">AI_AGENT.py</span>
+    <span class="ai__chip ai__chip--ok"><i></i>ONLINE</span>
+    <button class="ai__close" type="button" id="aiClose" aria-label="Close">✕</button>
+  </div>
+  <div class="ai__log" id="aiLog">
+    <div class="ai__sys">// AI_AGENT.py booted · listening on tty1<br>// scripted replies · connect an LLM API for free chat</div>
+    <div class="msg"><span class="msg__who">YAN.AI</span><div class="msg__txt">Hi, I'm Yan's AI agent. Want to see projects, the tech stack, or talk about a role?</div></div>
+  </div>
+  <div class="ai__quick">
+    <button type="button" data-ask="projects">Projects</button>
+    <button type="button" data-ask="timeline">Timeline</button>
+    <button type="button" data-ask="skills">Tech stack</button>
+    <button type="button" data-ask="contact">Contact</button>
+  </div>
+  <form class="ai__form" id="aiForm">
+    <input id="aiInput" type="text" placeholder="&gt; ask something…" autocomplete="off" aria-label="Your question">
+    <button type="submit">SEND</button>
+  </form>
+</section>
+
+<section class="drawer" id="drawer" hidden aria-label="Asset uploads">
+  <div class="drawer__head">
+    <h3>REPLACE · MEDIA</h3>
+    <p>Swap any video, image or the background music here. Uploads only last in this browser tab. To deploy, put the file paths into the <code>MEDIA</code> config at the top of the script.</p>
+  </div>
+  <div class="drawer__list" id="drawerList"></div>
+</section>
+
+<section class="pmodal" id="pmodal" hidden aria-label="Project details">
+  <div class="pmodal__backdrop" data-close-p></div>
+  <article class="pmodal__card" role="dialog" aria-modal="true" aria-labelledby="pmTitle" data-lenis-prevent>
+    <button class="ai__close pmodal__x" type="button" data-close-p aria-label="Close">✕</button>
+    <div class="eyebrow mono" id="pmEyebrow">Project 01 · Personal project</div>
+    <h3 class="pmodal__t" id="pmTitle"></h3>
+    <ul class="chips" id="pmStack"></ul>
+    <ul class="row__list" id="pmList"></ul>
+    <div class="row__kpis" id="pmKpis"></div>
+    <a class="pmodal__link" id="pmLink" href="#" target="_blank" rel="noopener" hidden>View on GitHub ↗</a>
+  </article>
+</section>
+
+<input type="file" id="filePick" hidden>
+<audio id="bgm" loop preload="auto"></audio>
+<div hidden data-slot="bgMusic" data-kind="audio" data-label="BACKGROUND MUSIC" data-spec="MP3 / M4A · loops · plays with Sound on"></div>
+
+<!-- ================= Sections ================= -->
+<main>
+
+  <!-- 00 HERO: replace this block with your own opening animation -->
+  <section class="sec" id="home" data-name="HOME">
+    <div class="slot slot--bg" data-slot="heroVideo" data-kind="video" data-pos="right" data-label="HERO BACKGROUND VIDEO" data-spec="1920×1080 · MP4 · loop · your intro animation"></div>
+    <div class="hero">
+      <div class="hero__who"><strong>Yan Wei</strong><span class="mono">Software Engineer</span></div>
+      <div class="hero__path mono">// AI Engineering / Backend / Web · 2026</div>
+      <h1 class="hero__title">
+        <span class="line"><span>Yan Wei</span></span>
+                <span class="line"><span class="hl">OS<i class="cursor cursor--block"></i></span></span>
+      </h1>
+      <div class="hero__sub">AI agents, backends &amp; the web in between</div>
+      <div class="hero__en mono">AI Engineer · Backend Engineer · Web Developer</div>
+      <a class="hero__scroll mono" href="#index" data-go="index">Scroll to boot <span class="arrow">↓</span></a>
+    </div>
+  </section>
+
+  <!-- 01 INDEX: cassette deck (pinned, scroll switches tapes) -->
+  <section class="sec" id="index" data-name="INDEX">
+    <div class="slot slot--bg" data-slot="indexBg" data-kind="video" data-pos="top-right" data-label="INDEX BACKGROUND VIDEO" data-spec="floating screens / depth · MP4 · loop"></div>
+    <div class="shade"></div>
+    <div class="deck__dots mono" id="deckDots"></div>
+    <div class="deck" id="deck"></div>
+    <button class="deck__arrow deck__arrow--l" type="button" id="deckPrev" aria-label="Previous chapter">←</button>
+    <button class="deck__arrow deck__arrow--r" type="button" id="deckNext" aria-label="Next chapter">→</button>
+    <div class="deck__info">
+      <h2 class="deck__title" id="deckTitle">Profile</h2>
+      <span class="deck__cn" id="deckCn">WHO I AM</span>
+      <span class="deck__en mono" id="deckEn">Who runs this system</span>
+      <a class="deck__enter" id="deckEnter" href="#profile" data-go="profile">ENTER ▸</a>
+    </div>
+  </section>
+
+  <!-- 02 PROFILE -->
+  <section class="sec" id="profile" data-name="PROFILE">
+    <div class="profile">
+      <div data-reveal-group>
+        <div class="eyebrow mono" data-reveal>01 · Profile</div>
+        <h2 class="h-sec" data-reveal>Pro<span class="hl">file</span><i class="cursor"></i></h2>
+        <p class="lead" data-reveal>MSc Computer Science @ Loughborough. AI Engineer building AI agents &amp; RAG applications, and a backend &amp; full-stack developer who ships them.</p>
+        <a class="btn-fill" href="#contact" data-go="contact" data-reveal>↓ Resume &amp; contact</a>
+      </div>
+      <div data-reveal-group>
+        <dl class="facts" data-reveal>
+          <div class="fact"><dt class="mono">Study</dt><dd>MSc Computer Science @ Loughborough</dd></div>
+          <div class="fact"><dt class="mono">Role</dt><dd>AI Engineer</dd></div>
+          <div class="fact"><dt class="mono">Building</dt><dd>AI Agents &amp; RAG Applications</dd></div>
+          <div class="fact"><dt class="mono">Focus</dt><dd>Backend &amp; Full-Stack Developer</dd></div>
+          <div class="fact"><dt class="mono">Code</dt><dd>Python, Java &amp; JavaScript</dd></div>
+        </dl>
+        <div class="stats" data-reveal>
+          <div class="stat"><b><span data-count="3">0</span></b><span class="mono">Roles</span></div>
+          <div class="stat"><b><span data-count="4">0</span></b><span class="mono">Stack areas</span></div>
+          <div class="stat"><b><span data-count="20">0</span><em>+</em></b><span class="mono">Tools</span></div>
+          <div class="stat"><b>∞</b><span class="mono">Curiosity</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 TIMELINE: replace the rows with your real roles -->
+  <section class="sec" id="timeline" data-name="TIMELINE">
+    <div class="journey">
+      <div data-reveal-group>
+        <div class="eyebrow mono" data-reveal>02 · Career log</div>
+        <h2 class="h-sec" data-reveal>Journey<i class="cursor"></i></h2>
+        <p class="lead" data-reveal>Where I've worked, newest first.</p>
+      </div>
+      <div class="rows">
+        <article class="row">
+          <div class="row__when"><div class="row__y">Now</div><div class="row__range mono">06/2026 – Present</div></div>
+          <div class="row__body">
+            <h3 class="row__t">Volunteer Software Engineer<span>Girls in Data</span></h3>
+            <div class="row__where mono">Basingstoke, UK · Microsoft Power Platform</div>
+            <ul class="row__list">
+              <li><b>Background</b>Built features for a volunteer CRM platform on Microsoft Power Platform (Power Pages, Dataverse), managing volunteer records and workflows.</li>
+              <li><b>Implementation</b>Led the frontend implementation using custom JavaScript modules to dynamically render action controls, cutting user actions by 75%.</li>
+              <li><b>Performance</b>Replaced full-page form submissions with lightweight asynchronous backend requests, reducing response time from 5 seconds to under 1 second.</li>
+              <li><b>UI / UX design</b>Used Figma to create wireframes and interactive prototypes, refining layouts and user flows before translating designs into responsive HTML, CSS and JavaScript interfaces.</li>
+              <li><b>Responsive design</b>Built responsive layouts using CSS media queries and Flexbox for consistent cross-device usability.</li>
+              <li><b>Agile</b>Took ownership of backlog tasks in a Scrum team and shared progress in weekly meetings.</li>
+            </ul>
+            <div class="row__kpis"><span><em>−75%</em> user actions</span><span><em>5s → &lt;1s</em> response time</span></div>
+          </div>
+          <span class="row__tag mono">Web · Frontend</span>
+        </article>
+        <article class="row">
+          <div class="row__when"><div class="row__y">2026</div><div class="row__range mono">01/2026 – 06/2026</div></div>
+          <div class="row__body">
+            <h3 class="row__t">AI Engineering Intern<span>Beijing Guhai Tingchao Technology</span></h3>
+            <div class="row__where mono">Beijing, China · Django REST · Celery · Redis · LLM APIs</div>
+            <ul class="row__list">
+              <li><b>Background</b>Contributed to an AI-powered clinical documentation tool supporting 8,000+ pharmacists and healthcare professionals, with 1,866 partner hospitals across 30 provinces and municipalities.</li>
+              <li><b>API development</b>Built and documented 6 Django REST endpoints for order submission, search, download, status polling and CSV export, with Markdown specs for frontend integration.</li>
+              <li><b>Async processing</b>Replaced synchronous LLM processing with Celery + Redis, reducing API response times from 10–30 seconds to under 200 ms and enabling continuous submissions without blocking users.</li>
+              <li><b>LLM integration</b>Integrated LLM APIs into the care-plan generation workflow with asynchronous task processing and status polling, supporting high-volume clinical documentation workflows.</li>
+            </ul>
+            <div class="row__kpis"><span><em>8,000+</em> users</span><span><em>1,866</em> hospitals</span><span><em>10–30s → &lt;200ms</em> API response</span></div>
+          </div>
+          <span class="row__tag mono">AI · Backend</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 STACK -->
+  <section class="sec" id="skills" data-name="STACK">
+    <div class="skills">
+      <div data-reveal-group>
+        <div class="eyebrow mono" data-reveal>03 · Tech stack</div>
+        <h2 class="h-sec" data-reveal>Stac<span class="hl">k</span><i class="cursor"></i></h2>
+        <p class="lead" data-reveal>From model to API to interface: the tools I use to ship AI products.</p>
+      </div>
+      <div class="cards" data-reveal-group>
+        <article class="card" data-reveal><span class="mono">S1</span><div class="card__ic"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div><h3>Engineering</h3><p>APIs, async workers and deployable services.</p><ul class="chips"><li>Python</li><li>FastAPI</li><li>Django REST</li><li>Celery</li><li>Redis</li><li>React</li><li>Docker</li></ul></article>
+        <article class="card" data-reveal><span class="mono">S2</span><div class="card__ic"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 11l10-4M7 13l10 4"/></svg></div><h3>AI Engineering</h3><p>Agents, retrieval and LLM features that hold up in production.</p><ul class="chips"><li>AI Agents</li><li>RAG</li><li>LLM API Integration</li><li>Model Evaluation</li><li>LangChain</li><li>LangGraph</li></ul></article>
+        <article class="card" data-reveal><span class="mono">S3</span><div class="card__ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></svg></div><h3>Generative AI</h3><p>Image and video generation, fine-tuned for a specific look.</p><ul class="chips"><li>Seedance</li><li>Midjourney</li><li>Stable Diffusion</li><li>LoRA Fine-Tuning</li><li>Prompt Engineering</li></ul></article>
+        <article class="card" data-reveal><span class="mono">S4</span><div class="card__ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M7 6v12M17 6v12M3 10h4M3 14h4M17 10h4M17 14h4"/></svg></div><h3>Design &amp; Media</h3><p>Visuals and motion for products and demos.</p><ul class="chips"><li>Photoshop</li><li>After Effects</li></ul></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 PROJECTS: film reel (pinned, vertical scroll becomes horizontal) -->
+  <section class="sec" id="projects" data-name="PROJECTS">
+    <div class="reel-head">
+      <div class="eyebrow mono">04 · Selected projects</div>
+      <h2 class="reel-title" id="reelTitle">Personal AI Agent<span class="cn">Long-term memory</span></h2>
+      <div class="reel-sub mono" id="reelSub">Personal project · Python · LiteLLM · MCP</div>
+      <button class="reel-more" type="button" id="reelMore">View details ▸</button>
+    </div>
+    <div class="film"><div class="film__track" id="filmTrack">
+      <div class="slot frame" data-slot="project1" data-kind="media" data-label="PERSONAL AI AGENT COVER" data-spec="3:4 · image or short video"></div>
+      <div class="slot frame" data-slot="project2" data-kind="media" data-label="RAGCHEF COVER" data-spec="3:4 · image or short video"></div>
+      <div class="slot frame" data-slot="project3" data-kind="media" data-label="ECO GUARDIAN COVER" data-spec="3:4 · image or short video"></div>
+      <div class="slot frame" data-slot="project4" data-kind="media" data-label="RESTAURANT COVER" data-spec="3:4 · image or short video"></div>
+      <div class="slot frame" data-slot="project5" data-kind="media" data-label="SHOP SYSTEM COVER" data-spec="3:4 · image or short video"></div>
+    </div></div>
+    <div class="reel-ui mono">
+      <button type="button" id="reelPrev" aria-label="Previous project">←</button>
+      <span><b id="reelNo">01</b> / 05</span>
+      <button type="button" id="reelNext" aria-label="Next project">→</button>
+    </div>
+    <div class="reel-hint mono">▼ Scroll to turn the reel</div>
+  </section>
+
+  <!-- 06 CONTACT: scroll-scrubbed film -->
+  <section class="sec" id="contact" data-name="CONTACT">
+    <div class="stage" id="stage">
+      <div class="slot slot--bg" data-slot="contactVideo" data-kind="video" data-mode="scrub" data-pos="center" data-label="CONTACT SCROLL VIDEO" data-spec="1920×1080 · MP4 · plays as you scroll · encode all keyframes"></div>
+      <div class="film-hint mono">05 · Contact · keep scrolling ▼</div>
+      <div class="slogan" id="slogan"><p>Ship the model. Ship the API. Ship the page.</p><span class="mono">AI · Backend · Web</span></div>
+      <div class="ccard" id="ccard">
+        <h3>Let's build something <em>weird</em>,<br>useful and hard to forget.</h3>
+        <form id="contactForm" novalidate>
+          <div class="field"><label class="mono" for="cName">Name</label><input id="cName" type="text" placeholder="Your name" autocomplete="name"></div>
+          <div class="field"><label class="mono" for="cEmail">Email</label><input id="cEmail" type="email" placeholder="you@company.com" autocomplete="email"></div>
+          <div class="field field--note"><label class="mono" for="cMsg">Note</label><textarea id="cMsg" rows="3" placeholder="What would you like to talk about?"></textarea></div>
+          <button class="btn-fill" type="submit">▸ TALK TO YAN</button>
+          <div class="ccard__note" id="cNote" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="foot mono"><span>© 2026 Yan Wei · Software Engineer</span><span>Built with GSAP · ScrollTrigger · Lenis</span></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
