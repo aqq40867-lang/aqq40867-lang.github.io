@@ -338,3 +338,6 @@ main{position:relative;z-index:1}
 }
 @media (max-width:480px){.cards{grid-template-columns:1fr}.nav .btn-line{padding:8px 10px}.fact{grid-template-columns:70px 1fr}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important}}
+
+/* 线上版（非编辑模式）隐藏素材替换入口 */
+html:not(.is-edit) #replaceBtn,html:not(.is-edit) #assetsBtn,html:not(.is-edit) #drawer{display:none!important}

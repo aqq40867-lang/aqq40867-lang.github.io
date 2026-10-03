@@ -93,6 +93,10 @@ const PROJECTS = [
    }}
 ];
 
+/* 编辑模式：本地打开（file:// / localhost）或网址带 ?edit 时显示 REPLACE 按钮和上传占位；线上访客看不到 */
+const EDIT = location.protocol==='file:' || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || new URLSearchParams(location.search).has('edit');
+document.documentElement.classList.toggle('is-edit', EDIT);
+
 const $ = (s,r=document)=>r.querySelector(s), $$ = (s,r=document)=>[...r.querySelectorAll(s)];
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const pad = n => String(n).padStart(2,'0');
@@ -120,7 +124,8 @@ $('#deckDots').innerHTML = TAPES.map(()=>'<i></i>').join('');
    3. 上传槽位
    ========================================================= */
 const runtime = {}; // key -> {url,type}
-let pickingKey = null, soundOn = false;
+let pickingKey = null, soundOn = true;   // 默认开声音：浏览器要求先有一次点击/按键，才会真正出声
+let audioUnlocked = false, unlockedByBtn = false;
 const guessType = (src, kind) => kind==='image' ? 'image' : kind==='video' ? 'video' : (/\.(mp4|webm|mov|m4v)(\?|$)/i.test(src)?'video':'image');
 
 function renderSlot(el){
@@ -129,7 +134,7 @@ function renderSlot(el){
   el.classList.toggle('is-filled', !!src);
   if(kind==='audio'){                       // 背景音乐：不显示在页面上，只换 <audio> 的源
     const bgm = $('#bgm');
-    if(src){ if(bgm.src !== src){ bgm.src = src; if(soundOn) bgm.play().catch(()=>{}); } }
+    if(src){ if(bgm.src !== src){ bgm.src = src; if(soundOn && audioUnlocked) bgm.play().catch(()=>{}); } }
     else { bgm.removeAttribute('src'); bgm.load(); }
     return;
   }
@@ -144,7 +149,7 @@ function renderSlot(el){
       m.dataset.scrub = scrub ? '1' : '';
     } else { m = document.createElement('img'); m.src = src; m.alt = el.dataset.label; }
     el.prepend(m);
-  } else if(!el.classList.contains('slot--bg')){   // 背景视频没上传时只显示网格底，不放占位框
+  } else if(EDIT && !el.classList.contains('slot--bg')){   // 线上版 / 背景视频：空槽位只显示网格底纹，不放占位框
     const b = document.createElement('button'); b.type='button'; b.className='slot__ph';
     const kt = kind==='video'?'video':kind==='image'?'image':'image / video';
     b.innerHTML = `<span class="slot__tag">${el.dataset.label}</span><span class="slot__spec">${el.dataset.spec||''}</span><span class="slot__cta">+ Upload ${kt}</span><span class="slot__key">MEDIA.${key}</span>`;
@@ -153,7 +158,7 @@ function renderSlot(el){
   }
 }
 const hasMusic = () => !!(runtime.bgMusic || MEDIA.bgMusic);
-const videoSound = () => soundOn && !hasMusic();   // 有背景音乐时，视频保持静音
+const videoSound = () => soundOn && audioUnlocked && !hasMusic();   // 有背景音乐时，视频保持静音
 function pick(key, kind){
   pickingKey = key;
   const f = $('#filePick');
@@ -191,10 +196,24 @@ function applySound(){
   btn.setAttribute('aria-pressed', soundOn);
   btn.querySelector('span').textContent = soundOn ? 'Sound on' : 'Sound off';
   const bgm = $('#bgm');
-  if(soundOn && hasMusic()) bgm.play().catch(()=>{}); else bgm.pause();
+  if(soundOn && audioUnlocked && hasMusic()) bgm.play().catch(()=>{}); else bgm.pause();
   $$('video').forEach(v=>{ if(!v.dataset.scrub){ v.muted = !videoSound(); if(!v.muted) v.play().catch(()=>{}); } });
 }
-$('#soundBtn').addEventListener('click', ()=>{ soundOn = !soundOn; applySound(); });
+$('#soundBtn').addEventListener('click', ()=>{
+  if(unlockedByBtn){ unlockedByBtn = false; applySound(); return; }   // 第一次点它 = 打开声音
+  soundOn = !soundOn; applySound();
+});
+/* 访客第一次点击 / 按键 / 触摸页面时自动出声 */
+const UNLOCK_EVENTS = ['pointerdown','keydown','touchstart'];
+function unlockAudio(e){
+  if(audioUnlocked) return;
+  audioUnlocked = true;
+  UNLOCK_EVENTS.forEach(t=>window.removeEventListener(t, unlockAudio, true));
+  if(e.target && e.target.closest && e.target.closest('#soundBtn')){ unlockedByBtn = true; return; }
+  applySound();
+}
+UNLOCK_EVENTS.forEach(t=>window.addEventListener(t, unlockAudio, true));
+applySound();
 
 /* =========================================================
    4. 平滑滚动 + ScrollTrigger
