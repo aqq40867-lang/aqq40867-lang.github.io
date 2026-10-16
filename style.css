@@ -355,3 +355,6 @@ main{position:relative;z-index:1}
 html:not(.is-edit) #replaceBtn,html:not(.is-edit) #assetsBtn,html:not(.is-edit) #drawer{display:none!important}
 @media (max-width:1280px){.pill__more{display:none}}
 @media (max-width:640px){.pill:not(.pill--btn):nth-child(2){display:inline-flex}}
+
+/* REPLACE 按钮全部隐藏（需要时删掉这一行即可恢复） */
+#replaceBtn,#assetsBtn{display:none!important}
