@@ -19,13 +19,10 @@
   <a class="brand" href="#home" data-go="home">
     <span class="brand__logo">YW</span>
     <span class="brand__name">Yan Wei</span>
-    <span class="brand__ver">v2026</span>
   </a>
   <nav class="tabs" aria-label="Sections">
     <a class="tab is-active" href="#home" data-go="home">HOME</a>
-    <a class="tab" href="#index" data-go="index">INDEX</a>
-    <a class="tab" href="#profile" data-go="profile">PROFILE</a>
-    <a class="tab" href="#timeline" data-go="timeline">TIMELINE</a>
+    <a class="tab" href="#profile" data-go="profile">ABOUT</a>
     <a class="tab" href="#projects" data-go="projects">PROJECTS</a>
     <a class="tab" href="#skills" data-go="skills">STACK</a>
     <a class="tab" href="#contact" data-go="contact">CONTACT</a>
@@ -33,7 +30,6 @@
   </nav>
   <div class="nav__right">
     <button class="sound mono" id="soundBtn" type="button" aria-pressed="false"><i class="sound__dot"></i><span>Sound off</span></button>
-    <button class="btn-line" type="button" data-open-ai><i></i>Talk to Yan</button>
   </div>
 </header>
 
@@ -41,18 +37,16 @@
 <div class="progress" aria-hidden="true"><div class="progress__fill" id="progFill"></div></div>
 
 <footer class="status">
-  <span class="pill" style="--c:var(--accent)"><i></i>SYSTEM ONLINE</span>
-  <span class="pill" style="--c:var(--ok)"><i></i>OPEN TO WORK</span>
-  <span class="pill" style="--c:var(--accent-2)"><i></i>AI AGENT ACTIVE</span>
-  <span class="pill" style="--c:var(--hot)"><i></i>UPDATED 2026</span>
+  <span class="pill" style="--c:var(--ok)"><i></i><b>Open to work</b><span class="pill__more"> · Graduate Software Engineer roles from January 2027</span></span>
+  <span class="pill" style="--c:var(--accent)"><i></i><b>Graduate Route</b><span class="pill__more"> · no sponsorship until Dec 2028</span></span>
+  <span class="pill" style="--c:var(--accent-2)"><i></i><b>MSc CS</b><span class="pill__more"> · Loughborough · Dec 2026</span></span>
+  <span class="pill" style="--c:var(--warn)"><i></i>Loughborough, UK</span>
   <button class="pill pill--btn" type="button" id="assetsBtn" style="--c:var(--warn)"><i></i>REPLACE <span id="assetCount">0/0</span></button>
-  <div class="status__meta"><span>SEC <b id="secNo">00</b> / 06 · <b id="secName">HOME</b></span><span>LOCAL <b id="clock">--:--:--</b></span></div>
 </footer>
 
 <button class="orb" type="button" data-open-ai aria-label="Open the AI assistant">
-  <span class="orb__tag">● TAP TO TALK</span>
   <span class="orb__ball"><span class="orb__ring"></span><span class="orb__ring"></span><span class="orb__core">AI</span></span>
-  <span class="orb__tag">YAN AI · ONLINE</span>
+  <span class="orb__tag">Ask my AI assistant</span>
 </button>
 
 <section class="ai" id="aiPanel" hidden aria-label="AI assistant">
@@ -110,15 +104,19 @@
   <section class="sec" id="home" data-name="HOME">
     <div class="slot slot--bg" data-slot="heroVideo" data-kind="video" data-pos="right" data-label="HERO BACKGROUND VIDEO" data-spec="1920×1080 · MP4 · loop · your intro animation"></div>
     <div class="hero">
-      <div class="hero__who"><strong>Yan Wei</strong><span class="mono">Software Engineer</span></div>
-      <div class="hero__path mono">// AI Engineering / Backend / Web · 2026</div>
       <h1 class="hero__title">
-        <span class="line"><span>Yan Wei</span></span>
-                <span class="line"><span class="hl">OS<i class="cursor cursor--block"></i></span></span>
+        <span class="line"><span>Yan Wei<i class="cursor cursor--block"></i></span></span>
       </h1>
-      <div class="hero__sub">AI agents, backends &amp; the web in between</div>
-      <div class="hero__en mono">AI Engineer · Backend Engineer · Web Developer</div>
-      <a class="hero__scroll mono" href="#index" data-go="index">Scroll to boot <span class="arrow">↓</span></a>
+      <div class="hero__sub">Software Engineer</div>
+      <div class="hero__edu mono">MSc Computer Science · Loughborough University · Graduating December 2026</div>
+      <p class="hero__pitch">I build backend and AI features that hold up in production. At my last internship, I cut a clinical documentation tool’s API response time from <em>30s to under 200ms</em> for <em>8,000+</em> pharmacists.</p>
+      <div class="hero__visa"><b>UK right to work:</b> Graduate Route visa · no sponsorship needed until December 2028</div>
+      <div class="hero__links mono">
+        <a href="https://github.com/aqq40867-lang" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/yan-wei-4a96b737b/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="mailto:aqq40867@gmail.com">Email ↗</a>
+      </div>
+      <a class="hero__scroll mono" href="#index" data-go="index">Scroll <span class="arrow">↓</span></a>
     </div>
   </section>
 
@@ -144,15 +142,15 @@
       <div data-reveal-group>
         <div class="eyebrow mono" data-reveal>01 · Profile</div>
         <h2 class="h-sec" data-reveal>Pro<span class="hl">file</span><i class="cursor"></i></h2>
-        <p class="lead" data-reveal>MSc Computer Science @ Loughborough. AI Engineer building AI agents &amp; RAG applications, and a backend &amp; full-stack developer who ships them.</p>
+        <p class="lead" data-reveal>MSc Computer Science student at Loughborough University, graduating December 2026. I’m a software engineer working across backend services, AI features (agents, RAG, LLM APIs) and the web front ends that ship them.</p>
       </div>
       <div data-reveal-group>
         <dl class="facts" data-reveal>
-          <div class="fact"><dt class="mono">Study</dt><dd>MSc Computer Science @ Loughborough</dd></div>
-          <div class="fact"><dt class="mono">Role</dt><dd>AI Engineer</dd></div>
-          <div class="fact"><dt class="mono">Building</dt><dd>AI Agents &amp; RAG Applications</dd></div>
-          <div class="fact"><dt class="mono">Focus</dt><dd>Backend &amp; Full-Stack Developer</dd></div>
-          <div class="fact"><dt class="mono">Code</dt><dd>Python, Java &amp; JavaScript</dd></div>
+          <div class="fact"><dt class="mono">Study</dt><dd>MSc Computer Science, Loughborough University · Dec 2026</dd></div>
+          <div class="fact"><dt class="mono">Role</dt><dd>Software Engineer</dd></div>
+          <div class="fact"><dt class="mono">Focus</dt><dd>Backend · AI features · Full-stack web</dd></div>
+          <div class="fact"><dt class="mono">Code</dt><dd>Python, Java, JavaScript / TypeScript</dd></div>
+          <div class="fact"><dt class="mono">Right to work</dt><dd>Graduate Route · until Dec 2028</dd></div>
         </dl>
         <div class="stats" data-reveal>
           <div class="stat"><b><span data-count="3">0</span></b><span class="mono">Roles</span></div>

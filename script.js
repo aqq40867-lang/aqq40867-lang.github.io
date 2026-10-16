@@ -253,8 +253,9 @@ function markSection(){
   const y = window.scrollY + window.innerHeight*.5;
   let i = 0; secTops.forEach((t,k)=>{ if(y >= t) i = k; });
   if(i === curSec) return; curSec = i;
-  $$('.tab').forEach(t=>t.classList.toggle('is-active', t.dataset.go===SECS[i].id));
-  $('#secNo').textContent = pad(i); $('#secName').textContent = SECS[i].dataset.name;
+  const TAB_OF = {index:'home', timeline:'profile'};   // 磁带屏归 HOME，时间线归 ABOUT
+  const id = TAB_OF[SECS[i].id] || SECS[i].id;
+  $$('.tab').forEach(t=>t.classList.toggle('is-active', t.dataset.go===id));
 }
 window.addEventListener('scroll', markSection, {passive:true});
 ScrollTrigger.addEventListener('refresh', markSection);
@@ -262,9 +263,8 @@ ScrollTrigger.addEventListener('refresh', markSection);
 /* ---------- HERO 入场（你的开屏动画可替换这段） ---------- */
 if(!reduce){
   gsap.timeline({delay:.2})
-    .from('.hero__who, .hero__path', {y:14, opacity:0, duration:.6, stagger:.1, ease:'power2.out'})
-    .from('.hero__title .line > span', {yPercent:110, duration:.9, stagger:.12, ease:'power4.out'}, '-=.3')
-    .from('.hero__sub, .hero__en, .hero__scroll', {y:16, opacity:0, duration:.6, stagger:.1, ease:'power2.out'}, '-=.4');
+    .from('.hero__title .line > span', {yPercent:110, duration:.9, stagger:.12, ease:'power4.out'})
+    .from('.hero__sub, .hero__edu, .hero__pitch, .hero__visa, .hero__links, .hero__scroll', {y:16, opacity:0, duration:.6, stagger:.08, ease:'power2.out'}, '-=.4');
   gsap.to('.hero', {yPercent:-12, opacity:.2, ease:'none', scrollTrigger:{trigger:'#home', start:'top top', end:'bottom top', scrub:true}});
 }
 
@@ -455,9 +455,6 @@ $('#aiForm').addEventListener('submit', e=>{
 });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ $('#aiPanel').hidden = true; $('#drawer').hidden = true; } });
 
-/* 时钟 */
-const tick = () => { $('#clock').textContent = new Date().toLocaleTimeString('en-GB',{hour12:false}); };
-tick(); setInterval(tick, 1000);
 
 ScrollTrigger.refresh();
 window.addEventListener('load', ()=>ScrollTrigger.refresh());
