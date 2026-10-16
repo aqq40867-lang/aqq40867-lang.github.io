@@ -13,7 +13,7 @@ const MEDIA = {
 /* 2. 磁带 & 作品数据 */
 const TAPES = [
   {c:'#8b6cff', t:'Profile', cn:'WHO I AM', en:'Who runs this system', note:'Role · focus · core stack', go:'profile'},
-  {c:'#49e28a', t:'Journey', cn:'CAREER LOG', en:'How this system evolved', note:'2 roles · AI · Web', go:'timeline'},
+  {c:'#49e28a', t:'Journey', cn:'CAREER LOG', en:'How this system evolved', note:'3 roles · AI · Web · Consulting', go:'timeline'},
   {c:'#ff8a3d', t:'Projects', cn:'ON THE REEL', en:'Selected work, frame by frame', note:'05 projects on tape', go:'projects'},
   {c:'#ff5fa8', t:'Tech Stack', cn:'5 MODULES', en:'What this system runs on', note:'20+ tools loaded', go:'skills'},
   {c:'#ffd23f', t:'Contact', cn:'OPEN CHANNEL', en:'Hiring? Say hi', note:'Staff pass · all access', go:'contact'}
@@ -424,7 +424,7 @@ $('#contactForm').addEventListener('submit', e=>{
    ========================================================= */
 const REPLIES = {
   projects:{a:'Five projects on the reel: Conveyor Builder (a factory conveyor-building game in Unity 6), Pico-Agent (a local coding agent with layered memory and task recovery), a Recipe QA System Powered by RAG, an Interactive Eco-Education Web App for Kids (React + PHP), and a Restaurant Online Ordering Website (a WordPress click-and-collect plugin and theme). Tap View details on any frame.', go:'projects'},
-  timeline:{a:'Currently Volunteer Software Engineer at Girls in Data (Power Platform, JavaScript). Before that, AI Engineering Intern at Beijing Guhai Tingchao Technology, building Django REST + Celery + LLM features for a clinical documentation tool.', go:'timeline'},
+  timeline:{a:'Currently Volunteer Software Engineer at Girls in Data (Power Platform, JavaScript). In 08–09/2026 I led a 6-person graduate consultancy team for Practera × Cashblack, with 4 of 6 growth recommendations adopted by the founder. Before that, AI Engineering Intern at Beijing Guhai Tingchao Technology, building Django REST + Celery + LLM features for a clinical documentation tool.', go:'timeline'},
   skills:{a:'Five modules: Engineering, AI Engineering, Generative AI, Design & Media, and Game Development.', go:'skills'},
   contact:{a:'The contact form is in the last chapter. An email and one line is enough.', go:'contact'}
 };
