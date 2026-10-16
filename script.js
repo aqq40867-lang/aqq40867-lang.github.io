@@ -6,7 +6,7 @@ const MEDIA = {
   heroVideo:'media/haro.mp4', indexBg:'', bgMusic:'',
   tape1:'', tape2:'', tape3:'', tape4:'', tape5:'',
   /* project1 = Conveyor Builder：之后有演示视频可改成 'media/conveyor.mp4' */
-  project1:'media/conveyor-cover.png', project2:'media/pico-cover.png', project3:'', project4:'',
+  project1:'media/conveyor-cover.png', project2:'media/pico-cover.png', project3:'media/ragchef-cover.png', project4:'media/eco-cover.png',
   contactVideo:''
 };
 
@@ -51,9 +51,9 @@ const PROJECTS = [
      ],
      kpis:[['60→0','redundant file reads'],['100%','drift detected'],['−16%','prompt length'],['7','tools']]
    }},
-  {t:'RAGChef', cn:'Recipe QA with RAG', sub:'Personal project · RAG · FastAPI · Docker',
+  {t:'Recipe QA System', cn:'Powered by RAG', sub:'Personal project · RAG · FastAPI · Docker',
    detail:{
-     name:'RAGChef: Recipe QA System Powered by Retrieval-Augmented Generation',
+     name:'Recipe QA System Powered by RAG',
      tag:'Project 03 · Personal project',
      link:'https://github.com/aqq40867-lang/RAGChef',
      stack:['Python','RAG','Vector search','Reranking','Prompt engineering','FastAPI','Docker'],
@@ -66,11 +66,12 @@ const PROJECTS = [
      ],
      kpis:[['2-stage','retrieval + rerank'],['Parent-child','chunking'],['Linux + Windows','same Docker env']]
    }},
-  {t:'Eco Guardian', cn:'Eco-education for kids', sub:'Personal project · React · PHP · MySQL',
+  {t:'Interactive Eco‑Education', cn:'Web App for Kids', sub:'Personal project · React · PHP · MySQL',
    detail:{
      name:'Interactive Eco-Education Web App for Kids',
      tag:'Project 04 · Personal project',
      link:'https://github.com/aqq40867-lang/Eco-Guardian-Loughborough-Biodiversity-Adventure',
+     video:'media/eco-demo.mp4',
      stack:['HTML','CSS','JavaScript','React','PHP','MySQL'],
      bullets:[
        ['Background','Built an interactive biodiversity and sustainability learning platform for children aged 8–13.'],
@@ -352,7 +353,8 @@ function openProject(i){
   $('#pmKpis').innerHTML = d.kpis.map(([n,l])=>`<span><em>${n}</em>${l}</span>`).join('');
   const lk = $('#pmLink'); lk.hidden = !d.link; if(d.link) lk.href = d.link;
   const vd = $('#pmVideo'); vd.hidden = !d.video;
-  if(d.video){ vd.src = d.video; vd.onerror = ()=>{ vd.hidden = true; }; vd.play().catch(()=>{}); }
+  if(d.video){ vd.src = d.video; vd.onerror = ()=>{ vd.hidden = true; };
+    vd.style.aspectRatio = ''; vd.onloadedmetadata = ()=>{ if(vd.videoWidth) vd.style.aspectRatio = vd.videoWidth+' / '+vd.videoHeight; }; vd.play().catch(()=>{}); }
   else { vd.removeAttribute('src'); vd.load(); }
   pm.hidden = false; lenis && lenis.stop(); pm.querySelector('.pmodal__x').focus();
   if(!reduce) gsap.fromTo('.pmodal__card', {y:40, opacity:0, scale:.97}, {y:0, opacity:1, scale:1, duration:.45, ease:'power3.out'});
@@ -404,7 +406,7 @@ $('#contactForm').addEventListener('submit', e=>{
    5. AI 助手（预设回复）
    ========================================================= */
 const REPLIES = {
-  projects:{a:'Four projects on the reel: Conveyor Builder (a factory conveyor-building game in Unity 6), Pico-Agent (a local coding agent with layered memory and task recovery), RAGChef (recipe QA with RAG), and Eco Guardian (a React + PHP learning app for kids). Tap View details on any frame.', go:'projects'},
+  projects:{a:'Four projects on the reel: Conveyor Builder (a factory conveyor-building game in Unity 6), Pico-Agent (a local coding agent with layered memory and task recovery), a Recipe QA System Powered by RAG, and an Interactive Eco-Education Web App for Kids (React + PHP). Tap View details on any frame.', go:'projects'},
   timeline:{a:'Currently Volunteer Software Engineer at Girls in Data (Power Platform, JavaScript). Before that, AI Engineering Intern at Beijing Guhai Tingchao Technology, building Django REST + Celery + LLM features for a clinical documentation tool.', go:'timeline'},
   skills:{a:'Five modules: Engineering, AI Engineering, Generative AI, Design & Media, and Game Development.', go:'skills'},
   contact:{a:'The contact form is in the last chapter. An email and one line is enough.', go:'contact'}

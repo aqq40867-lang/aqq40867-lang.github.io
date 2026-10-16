@@ -338,7 +338,7 @@ main{position:relative;z-index:1}
   .orb{transform:scale(.8);transform-origin:bottom right}
   .deck__arrow{display:none}
 }
-@media (max-width:480px){.cards{grid-template-columns:1fr}.cards > .card:last-child:nth-child(odd){grid-column:auto}.nav .btn-line{padding:8px 10px}.fact{grid-template-columns:70px 1fr}}
+@media (max-width:480px){.reel-title{font-size:34px}.reel-title .cn{display:block;margin:.4em 0 0;vertical-align:0}.cards{grid-template-columns:1fr}.cards > .card:last-child:nth-child(odd){grid-column:auto}.nav .btn-line{padding:8px 10px}.fact{grid-template-columns:70px 1fr}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important}}
 
 /* 线上版（非编辑模式）隐藏素材替换入口 */
