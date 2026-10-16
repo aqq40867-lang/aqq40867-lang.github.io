@@ -257,7 +257,7 @@ main{position:relative;z-index:1}
 .skills{max-width:1320px;margin:0 auto;text-align:center}
 .skills .eyebrow{justify-content:center}
 .skills .lead{margin-inline:auto}
-.cards{margin-top:48px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;text-align:left}
+.cards{margin-top:48px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;text-align:left}
 .card{position:relative;border:1px solid var(--line);border-radius:10px;padding:22px 18px 24px;background:linear-gradient(180deg,rgba(139,108,255,.08),rgba(14,12,25,.6));backdrop-filter:blur(8px);transition:border-color .3s,transform .3s}
 .card:hover{border-color:rgba(139,108,255,.6);box-shadow:0 0 30px rgba(139,108,255,.15)}
 .card__ic{width:40px;height:40px;border-radius:8px;border:1px solid var(--line-2);display:grid;place-items:center;color:var(--accent-2)}
@@ -282,6 +282,8 @@ main{position:relative;z-index:1}
 .pmodal__x{position:absolute;right:16px;top:16px}
 .pmodal__link{display:inline-flex;margin-top:22px;font:700 10.5px/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;padding:11px 18px;border-radius:99px;border:1px solid var(--accent);color:var(--fg)}
 .pmodal__link:hover{background:rgba(139,108,255,.18)}
+.pmodal__video{display:block;width:100%;aspect-ratio:16/9;margin:18px 0 4px;border:1px solid var(--line-2);border-radius:10px;background:#000;object-fit:contain}
+.pmodal__video[hidden]{display:none}
 .pmodal__t{margin:14px 40px 0 0;font:800 italic clamp(28px,3.6vw,46px)/1 var(--f-display);text-transform:uppercase;text-wrap:balance}
 .film{--fw:min(clamp(200px,26vw,340px),calc((100vh - 420px)*.6));--gap:18px;position:relative;margin-top:22px;transform:rotate(-3deg);background:#0c0b12;border-block:1px solid rgba(255,255,255,.08);padding:28px 0;box-shadow:0 30px 60px rgba(0,0,0,.5)}
 .film::before,.film::after{content:"";position:absolute;left:0;right:0;height:10px;background:repeating-linear-gradient(90deg,transparent 0 10px,#d8d2e8 10px 24px,transparent 24px 34px);opacity:.75}
@@ -321,7 +323,7 @@ main{position:relative;z-index:1}
 .foot{position:relative;padding:40px var(--gutter) calc(var(--bar-h) + 40px);display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;color:var(--dim);border-top:1px solid var(--line)}
 
 /* ============ 响应式 ============ */
-@media (max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.tabs{display:none}}
+@media (max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.cards > .card:last-child:nth-child(odd){grid-column:1 / -1}.tabs{display:none}}
 @media (max-width:820px){
   .side,.progress,.status__meta,.brand__ver,.sound span{display:none}
   .sec,.hero{padding-left:var(--gutter)}
@@ -336,7 +338,7 @@ main{position:relative;z-index:1}
   .orb{transform:scale(.8);transform-origin:bottom right}
   .deck__arrow{display:none}
 }
-@media (max-width:480px){.cards{grid-template-columns:1fr}.nav .btn-line{padding:8px 10px}.fact{grid-template-columns:70px 1fr}}
+@media (max-width:480px){.cards{grid-template-columns:1fr}.cards > .card:last-child:nth-child(odd){grid-column:auto}.nav .btn-line{padding:8px 10px}.fact{grid-template-columns:70px 1fr}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important}}
 
 /* 线上版（非编辑模式）隐藏素材替换入口 */

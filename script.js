@@ -5,7 +5,8 @@
 const MEDIA = {
   heroVideo:'media/haro.mp4', indexBg:'', bgMusic:'',
   tape1:'', tape2:'', tape3:'', tape4:'', tape5:'',
-  project1:'', project2:'', project3:'', project4:'', project5:'',
+  /* project1 = Conveyor Builder：之后有演示视频可改成 'media/conveyor.mp4' */
+  project1:'media/conveyor-cover.png', project2:'media/pico-cover.png', project3:'', project4:'',
   contactVideo:''
 };
 
@@ -13,30 +14,47 @@ const MEDIA = {
 const TAPES = [
   {c:'#8b6cff', t:'Profile', cn:'WHO I AM', en:'Who runs this system', note:'Role · focus · core stack', go:'profile'},
   {c:'#49e28a', t:'Journey', cn:'CAREER LOG', en:'How this system evolved', note:'2 roles · AI · Web', go:'timeline'},
-  {c:'#ff5fa8', t:'Tech Stack', cn:'4 MODULES', en:'What this system runs on', note:'20+ tools loaded', go:'skills'},
-  {c:'#ff8a3d', t:'Projects', cn:'ON THE REEL', en:'Selected work, frame by frame', note:'05 projects on tape', go:'projects'},
+  {c:'#ff8a3d', t:'Projects', cn:'ON THE REEL', en:'Selected work, frame by frame', note:'04 projects on tape', go:'projects'},
+  {c:'#ff5fa8', t:'Tech Stack', cn:'5 MODULES', en:'What this system runs on', note:'20+ tools loaded', go:'skills'},
   {c:'#ffd23f', t:'Contact', cn:'OPEN CHANNEL', en:'Hiring? Say hi', note:'Staff pass · all access', go:'contact'}
 ];
 /* 作品数据：t/cn/sub 显示在胶片带上，detail 显示在 View details 弹窗里 */
 const PROJECTS = [
-  {t:'Personal AI Agent', cn:'Long-term memory', sub:'Personal project · Python · LiteLLM · MCP',
+  {t:'Conveyor Builder', cn:'Factory sim in Unity', sub:'Personal project · Unity 6 · C# · URP',
    detail:{
-     name:'Personal AI Agent with Long-Term Memory and Proactive Notifications',
+     name:'Conveyor Builder — Factory Conveyor Building Game',
      tag:'Project 01 · Personal project',
-     stack:['Python','LiteLLM','MCP','FastAPI','SQLite','React','Docker'],
+     link:'https://github.com/aqq40867-lang/Conveyor-Builder',
+     video:'media/conveyor-demo.mp4',   // 详情弹窗里的演示视频（16:9，H.264 MP4）
+     stack:['Unity 6','C#','URP'],
      bullets:[
-       ['Agent runtime','Built a modular agent runtime with atomic hot reload and automatic rollback, enabling upgrades without downtime.'],
-       ['Memory retrieval','Developed two-path hybrid retrieval combining vector search, BM25 and temporal signals, with Top-5 vector recall and dynamic memory-graph retrieval.'],
-       ['Context engineering','Automated context compression at 74% of the model context window, preserving tool-call/result pairs and extracting source-grounded long-term memories.'],
-       ['Proactive agent','Built proactive notifications with adaptive polling based on user activity and MCP-based data retrieval.'],
-       ['Evaluation','Built end-to-end evaluation with LongMemEval and PersonaMem to detect retrieval and compression regressions.']
+       ['Background','Built a factory simulation game in Unity where players design conveyor lines to move products from production to delivery.'],
+       ['Runtime build system','Built a placement system for 4 conveyor piece types with rotation and auto-snapping, removing the need for manual alignment.'],
+       ['Routing logic','Implemented branching and filtering that sorts 2 product types across split routes, demonstrated on a 24-piece multi-branch production line.'],
+       ['Extensible architecture','Split the game into 7 single-purpose C# components, so new conveyor and product types can be added without changing existing logic.'],
+       ['Live tuning','Added a live delivery counter, adjustable conveyor speed and pause control, so players can test and tune their line in real time.']
      ],
-     kpis:[['Zero','downtime upgrades'],['Top-5','vector recall'],['74%','compression trigger'],['2','eval benchmarks']]
+     kpis:[['4','piece types'],['24','piece production line'],['7','C# components'],['2','product types sorted']]
+   }},
+  {t:'Pico-Agent', cn:'Local coding agent', sub:'Personal project · Python · Tool Calling',
+   detail:{
+     name:'Pico-Agent — Local Coding Agent with Layered Memory and Task Recovery',
+     tag:'Project 02 · Personal project',
+     link:'https://github.com/aqq40867-lang/pico-agent',
+     stack:['Python','Tool Calling','Context Management','Checkpoint/Resume','Layered Memory','Run Tracing'],
+     bullets:[
+       ['Background','Built a local coding agent as a developer-productivity tool that reads, edits and runs code, unifying model access, tool execution, session state and run tracing in one pipeline (2 model backends, 7 tools).'],
+       ['Context management','Layered context budgeting cut average prompt length by 16% across 12 long-context configurations without truncating the current request.'],
+       ['Structured memory','Task summaries, file summaries and working notes with recall cut redundant file reads in follow-up turns from 60 to 0 across 12 tasks.'],
+       ['Checkpoint & resume','Restored task state after budget overflow, interruption or workspace drift, detecting 100% of drift across 10 scenarios with no actions on stale state.'],
+       ['Evaluation & safety','Built regression benchmarks and verifiers to catch model errors, with argument validation, workspace isolation, high-risk action approval and secret redaction.']
+     ],
+     kpis:[['60→0','redundant file reads'],['100%','drift detected'],['−16%','prompt length'],['7','tools']]
    }},
   {t:'RAGChef', cn:'Recipe QA with RAG', sub:'Personal project · RAG · FastAPI · Docker',
    detail:{
      name:'RAGChef: Recipe QA System Powered by Retrieval-Augmented Generation',
-     tag:'Project 02 · Personal project',
+     tag:'Project 03 · Personal project',
      link:'https://github.com/aqq40867-lang/RAGChef',
      stack:['Python','RAG','Vector search','Reranking','Prompt engineering','FastAPI','Docker'],
      bullets:[
@@ -51,7 +69,7 @@ const PROJECTS = [
   {t:'Eco Guardian', cn:'Eco-education for kids', sub:'Personal project · React · PHP · MySQL',
    detail:{
      name:'Interactive Eco-Education Web App for Kids',
-     tag:'Project 03 · Personal project',
+     tag:'Project 04 · Personal project',
      link:'https://github.com/aqq40867-lang/Eco-Guardian-Loughborough-Biodiversity-Adventure',
      stack:['HTML','CSS','JavaScript','React','PHP','MySQL'],
      bullets:[
@@ -63,33 +81,6 @@ const PROJECTS = [
        ['AI-assisted development','Used Claude Code with manual code review and test-based verification.']
      ],
      kpis:[['61s → 10.8s','3G load time'],['11.9MB → 1.9MB','page weight'],['100%','test pass rate'],['8–13','age group']]
-   }},
-  {t:'Restaurant Ordering', cn:'Pickup ordering site', sub:'Personal project · HTML · CSS · JavaScript',
-   detail:{
-     name:'Restaurant Online Ordering Website',
-     tag:'Project 04 · Personal project',
-     stack:['HTML','CSS','JavaScript'],
-     bullets:[
-       ['Frontend','Built a responsive restaurant ordering website in vanilla JavaScript, with 21-dish menu filtering and search, size-based pricing and a persistent cart.'],
-       ['Pickup scheduling','Implemented a pickup-only scheduling flow that generates 15-minute slots from weekly opening hours, blocks closed days and enforces a 25-minute preparation lead time.'],
-       ['Responsive UI/UX','Delivered a mobile-first UI with CSS Grid/Flexbox, a full-screen order drawer, live “open now” status and accessible form validation.']
-     ],
-     kpis:[['21','dishes'],['15-min','pickup slots'],['25-min','prep lead time']]
-   }},
-  {t:'Accessories Shop', cn:'Java OOP retail system', sub:'Personal project · Java · OOP',
-   detail:{
-     name:'Computer Accessories Shop System: OOP-Based Console Retail Management',
-     tag:'Project 05 · Personal project',
-     link:'https://github.com/aqq40867-lang/Computer-Accessories-Shop-System-Java-OOP-',
-     stack:['Java','Object-oriented design','Strategy pattern'],
-     bullets:[
-       ['Background','Built a terminal-based computer accessories shop management system in Core Java, modelling a full retail transaction flow with OOP.'],
-       ['Abstraction','Applied abstraction and polymorphism to support multiple product types through a common catalogue structure.'],
-       ['Access control','Designed role-based access control to separate customer and administrator permissions.'],
-       ['Design patterns','Applied the Strategy design pattern for interchangeable payment methods and extensible checkout logic.'],
-       ['Data modelling','Used enums and value objects to standardise data representation and reduce inconsistent inputs.']
-     ],
-     kpis:[['2','user roles'],['Strategy','payment pattern'],['Core Java','no frameworks']]
    }}
 ];
 
@@ -360,10 +351,13 @@ function openProject(i){
   $('#pmList').innerHTML = d.bullets.map(([b,t])=>`<li><b>${b}</b>${t}</li>`).join('');
   $('#pmKpis').innerHTML = d.kpis.map(([n,l])=>`<span><em>${n}</em>${l}</span>`).join('');
   const lk = $('#pmLink'); lk.hidden = !d.link; if(d.link) lk.href = d.link;
+  const vd = $('#pmVideo'); vd.hidden = !d.video;
+  if(d.video){ vd.src = d.video; vd.onerror = ()=>{ vd.hidden = true; }; vd.play().catch(()=>{}); }
+  else { vd.removeAttribute('src'); vd.load(); }
   pm.hidden = false; lenis && lenis.stop(); pm.querySelector('.pmodal__x').focus();
   if(!reduce) gsap.fromTo('.pmodal__card', {y:40, opacity:0, scale:.97}, {y:0, opacity:1, scale:1, duration:.45, ease:'power3.out'});
 }
-function closeProject(){ pm.hidden = true; lenis && lenis.start(); $('#reelMore').focus({preventScroll:true}); }
+function closeProject(){ const vd = $('#pmVideo'); vd.pause(); vd.removeAttribute('src'); vd.load(); pm.hidden = true; lenis && lenis.start(); $('#reelMore').focus({preventScroll:true}); }
 $('#reelMore').addEventListener('click', ()=>openProject(reelIdx));
 pm.addEventListener('click', e=>{ if(e.target.closest('[data-close-p]')) closeProject(); });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !pm.hidden) closeProject(); });
@@ -410,9 +404,9 @@ $('#contactForm').addEventListener('submit', e=>{
    5. AI 助手（预设回复）
    ========================================================= */
 const REPLIES = {
-  projects:{a:'Five projects on the reel: a personal AI agent with long-term memory, RAGChef (recipe QA with RAG), Eco Guardian (a React + PHP learning app for kids), a restaurant pickup-ordering site, and a Java OOP shop system. Tap View details on any frame.', go:'projects'},
+  projects:{a:'Four projects on the reel: Conveyor Builder (a factory conveyor-building game in Unity 6), Pico-Agent (a local coding agent with layered memory and task recovery), RAGChef (recipe QA with RAG), and Eco Guardian (a React + PHP learning app for kids). Tap View details on any frame.', go:'projects'},
   timeline:{a:'Currently Volunteer Software Engineer at Girls in Data (Power Platform, JavaScript). Before that, AI Engineering Intern at Beijing Guhai Tingchao Technology, building Django REST + Celery + LLM features for a clinical documentation tool.', go:'timeline'},
-  skills:{a:'Four modules: Engineering, AI Engineering, Generative AI, and Design & Media.', go:'skills'},
+  skills:{a:'Five modules: Engineering, AI Engineering, Generative AI, Design & Media, and Game Development.', go:'skills'},
   contact:{a:'The contact form is in the last chapter. An email and one line is enough.', go:'contact'}
 };
 const KEYS = [['projects',/project|work|portfolio|built/i],['timeline',/journey|timeline|experience|career|cv|resume/i],['skills',/skill|stack|tech|python|ai|rag|agent|react/i],['contact',/contact|hire|email|role|job|reach/i]];
