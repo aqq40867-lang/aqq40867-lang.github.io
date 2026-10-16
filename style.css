@@ -275,6 +275,12 @@ main{position:relative;z-index:1}
 .card h3{margin:22px 0 0;font:800 italic 24px/1 var(--f-display)}
 .card p{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.6}
 .card .mono{position:absolute;right:16px;top:20px;color:var(--dim)}
+.langs{margin:40px auto 0;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px 16px}
+.langs__k{color:var(--dim);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.langs .chips{margin:0;justify-content:center}
+.langs .chips li{font-size:12px;padding:7px 11px}
+.card__sub{margin:16px 0 -8px;font-family:var(--f-mono);color:var(--dim);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.langs + .cards{margin-top:24px}
 .chips{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .chips li{font:500 11px/1 var(--f-mono);letter-spacing:.02em;padding:6px 9px;border-radius:4px;border:1px solid var(--line-2);color:var(--fg);background:rgba(139,108,255,.08)}
 
