@@ -6,7 +6,7 @@ const MEDIA = {
   heroVideo:'media/haro.mp4', indexBg:'', bgMusic:'',
   tape1:'', tape2:'', tape3:'', tape4:'', tape5:'',
   /* project1 = Conveyor Builder：之后有演示视频可改成 'media/conveyor.mp4' */
-  project1:'media/conveyor-cover.png', project2:'media/pico-cover.png', project3:'media/ragchef-cover.png', project4:'media/eco-cover.png', project5:'media/crust-cover.png',
+  project1:'media/conveyor-cover.png', project2:'media/pico-cover.png', project3:'media/ragchef-cover.png', project4:'media/eco-cover.png',
   contactVideo:''
 };
 
@@ -14,7 +14,7 @@ const MEDIA = {
 const TAPES = [
   {c:'#8b6cff', t:'Profile', cn:'WHO I AM', en:'Who runs this system', note:'Role · focus · core stack', go:'profile'},
   {c:'#49e28a', t:'Journey', cn:'CAREER LOG', en:'How this system evolved', note:'3 roles · AI · Web · Consulting', go:'timeline'},
-  {c:'#ff8a3d', t:'Projects', cn:'ON THE REEL', en:'Selected work, frame by frame', note:'05 projects on tape', go:'projects'},
+  {c:'#ff8a3d', t:'Projects', cn:'ON THE REEL', en:'Selected work, frame by frame', note:'04 projects on tape', go:'projects'},
   {c:'#ff5fa8', t:'Technical Skills', cn:'5 MODULES', en:'What this system runs on', note:'6 languages · 40+ tools', go:'skills'},
   {c:'#ffd23f', t:'Contact', cn:'OPEN CHANNEL', en:'Hiring? Say hi', note:'Staff pass · all access', go:'contact'}
 ];
@@ -82,23 +82,6 @@ const PROJECTS = [
        ['AI-assisted development','Used Claude Code with manual code review and test-based verification.']
      ],
      kpis:[['61s → 10.8s','3G load time'],['11.9MB → 1.9MB','page weight'],['100%','test pass rate'],['8–13','age group']]
-   }},
-  {t:'Restaurant Online Ordering', cn:'Website (WordPress)', sub:'Personal project · WordPress · PHP · Gutenberg',
-   detail:{
-     name:'Restaurant Online Ordering Website (WordPress)',
-     tag:'Project 05 · Personal project',
-     link:'https://github.com/aqq40867-lang/Restaurant-Online-Ordering-Website',
-     video:'media/crust-demo.mp4',
-     stack:['WordPress','PHP','JavaScript','Gutenberg Blocks','theme.json','WP REST API','Docker'],
-     bullets:[
-       ['Background','Rebuilt a static HTML/CSS/JS restaurant prototype into a custom WordPress plugin and theme for online click-and-collect orders, with no page builders, WooCommerce or third-party plugins.'],
-       ['Plugin / theme split','Kept all business logic in a standalone plugin (custom post types for dishes, orders and messages) and presentation in a theme.json-driven theme, so the menu and orders survive a theme change and the plugin works under any theme.'],
-       ['Gutenberg blocks','Built 3 dynamic blocks (Menu & Ordering, Opening Hours, Contact Form) from block.json with PHP render templates and live ServerSideRender previews, with no build step.'],
-       ['REST API & validation','Extended the WP REST API with order and contact endpoints that recalculate prices on the server and check each collection slot against opening hours, prep time and a 7-day window in the restaurant’s time zone.'],
-       ['Admin & security','Added order status workflow, meta boxes, list-table columns and Customizer settings for hours and slots; sanitised input, escaped output, nonces and capability checks, plus honeypot and per-IP rate limiting.'],
-       ['Dev environment','One-command Docker setup (WordPress, MariaDB, WP-CLI, Mailpit) and a WordPress Playground blueprint for a zero-install live demo.']
-     ],
-     kpis:[['3','Gutenberg blocks'],['3','custom post types'],['0','third-party plugins'],['1-cmd','Docker setup']]
    }}
 ];
 
@@ -423,7 +406,7 @@ $('#contactForm').addEventListener('submit', e=>{
    5. AI 助手（预设回复）
    ========================================================= */
 const REPLIES = {
-  projects:{a:'Five projects on the reel: Conveyor Builder (a factory conveyor-building game in Unity 6), Pico-Agent (a local coding agent with layered memory and task recovery), a Recipe QA System Powered by RAG, an Interactive Eco-Education Web App for Kids (React + PHP), and a Restaurant Online Ordering Website (a WordPress click-and-collect plugin and theme). Tap View details on any frame.', go:'projects'},
+  projects:{a:'Four projects on the reel: Conveyor Builder (a factory conveyor-building game in Unity 6), Pico-Agent (a local coding agent with layered memory and task recovery), a Recipe QA System Powered by RAG, and an Interactive Eco-Education Web App for Kids (React + PHP). Tap View details on any frame.', go:'projects'},
   timeline:{a:'Currently Volunteer Software Engineer at Girls in Data (Power Platform, JavaScript). In 08–09/2026 I led a 6-person graduate consultancy team for Practera × Cashblack, with 4 of 6 growth recommendations adopted by the founder. Before that, AI Engineering Intern at Beijing Guhai Tingchao Technology, building Django REST + Celery + LLM features for a clinical documentation tool.', go:'timeline'},
   skills:{a:'Languages: Python, Java, TypeScript, JavaScript, SQL and C#. Five areas: AI Engineering (agents, RAG, LangGraph), Backend & Infrastructure (FastAPI, Spring Boot, Django REST, Docker), Data (SQL, pandas, Power BI), Frontend (React), plus generative media, design and games.', go:'skills'},
   contact:{a:'The contact form is in the last chapter. An email and one line is enough.', go:'contact'}
